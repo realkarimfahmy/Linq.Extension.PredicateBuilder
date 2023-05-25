@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<PackageId>Linq.Extension.PredicateBuilder</PackageId>
+		<Version>1.0</Version>
+		<Authors>Karim Fahmy</Authors>
+		<description>A library that build dynamic query predicate with filters in Linq.</description>
+		<tags>Linq;predicate;expression;dynamic;where;clause</tags>
+		<RepositoryUrl>https://github.com/realkarimfahmy/Linq.Extension.PredicateBuilder.git</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	</PropertyGroup>
+</Project>
