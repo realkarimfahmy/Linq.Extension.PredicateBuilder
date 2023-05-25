@@ -22,8 +22,8 @@ internal class Program
     {
         var searchFilters = new List<SearchFilter> {
             new SearchFilter{PropertyName = "Name", Operation = OperatorComparer.BeginsWith, Value = "post" },
-            new SearchFilter{PropertyName = "IsPublished", Operation = OperatorComparer.Equal, Value = "true" },
-            new SearchFilter{PropertyName = "TotalViews", Operation = OperatorComparer.GreaterOrEqual, Value = "150" },
+            new SearchFilter{PropertyName = "IsPublished", Operation = OperatorComparer.Equal, Value = true },
+            new SearchFilter{PropertyName = "TotalViews", Operation = OperatorComparer.GreaterOrEqual, Value = 150 },
         };
 
         var predicate = PredicateBuilder.Compile<Post>(searchFilters);
