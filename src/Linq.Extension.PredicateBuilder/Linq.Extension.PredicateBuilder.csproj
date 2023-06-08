@@ -8,7 +8,7 @@
 		<Version>1.0</Version>
 		<Authors>Karim Fahmy</Authors>
 		<description>A library that build dynamic query predicate with filters in Linq.</description>
-		<tags>Linq;predicate;expression;dynamic;where;clause</tags>
+		<PackageTags>Linq;predicate;expression;dynamic;where;clause</PackageTags>
 		<RepositoryUrl>https://github.com/realkarimfahmy/Linq.Extension.PredicateBuilder.git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>

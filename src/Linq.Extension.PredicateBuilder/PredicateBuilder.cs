@@ -22,7 +22,6 @@ namespace Linq.Extension.PredicateBuilder
         {
             ParameterExpression parameterExp = Expression.Parameter(typeof(T), "t");
             MemberExpression member = Expression.PropertyOrField(parameterExp, modelPropertyName.Split('.').First());
-            // If there are any dots in parram then we have to change expression 
             foreach (var innerMember in modelPropertyName.Split('.').Skip(1))
             {
                 member = Expression.PropertyOrField(member, innerMember);
@@ -221,14 +220,23 @@ namespace Linq.Extension.PredicateBuilder
 
         private static Expression BeginsWith<T>(MemberExpression member, ConstantExpression valuetoCheck)
         {
-            MethodInfo method = typeof(string).GetMethod("StartsWith", new[] { typeof(string) });
-            return Expression<Func<T, bool>>.Call(member, method, valuetoCheck);
+            MethodInfo toLowerMethodInfo = typeof(string).GetMethod("ToLower", new Type[] { });
+            Expression toLowerCall = Expression.Call(member, toLowerMethodInfo);
+
+            MethodInfo containsMethodInfo = typeof(string).GetMethod("StartsWith", new Type[] { typeof(string) });
+            ConstantExpression constantExpression = Expression.Constant(valuetoCheck.Value.ToString().ToLower(), typeof(string));
+            return Expression.Call(toLowerCall, containsMethodInfo, constantExpression);
         }
 
         private static Expression Contains<T>(MemberExpression member, ConstantExpression valuetoCheck)
         {
-            MethodInfo method = typeof(string).GetMethod("Contains", new[] { typeof(string) });
-            return Expression<Func<T, bool>>.Call(member, method, valuetoCheck);
+            MethodInfo toLowerMethodInfo = typeof(string).GetMethod("ToLower", new Type[] { });
+            Expression toLowerCall = Expression.Call(member, toLowerMethodInfo);
+
+            MethodInfo containsMethodInfo = typeof(string).GetMethod("Contains", new Type[] { typeof(string) });
+            ConstantExpression constantExpression = Expression.Constant(valuetoCheck.Value.ToString().ToLower(), typeof(string));
+            return Expression.Call(toLowerCall, containsMethodInfo, constantExpression);
+
         }
 
         private static Expression IsIn<T>(MemberExpression member, ConstantExpression valuetoCheck)
@@ -239,8 +247,13 @@ namespace Linq.Extension.PredicateBuilder
 
         private static Expression EndsWith<T>(MemberExpression member, ConstantExpression valuetoCheck)
         {
-            MethodInfo method = typeof(string).GetMethod("EndsWith", new[] { typeof(string) });
-            return Expression<Func<T, bool>>.Call(member, method, valuetoCheck);
+            MethodInfo toLowerMethodInfo = typeof(string).GetMethod("ToLower", new Type[] { });
+            Expression toLowerCall = Expression.Call(member, toLowerMethodInfo);
+
+            MethodInfo containsMethodInfo = typeof(string).GetMethod("EndsWith", new Type[] { typeof(string) });
+            ConstantExpression constantExpression = Expression.Constant(valuetoCheck.Value.ToString().ToLower(), typeof(string));
+            return Expression.Call(toLowerCall, containsMethodInfo, constantExpression);
+
         }
 
         private static Expression Equals<T>(MemberExpression member, ConstantExpression valuetoCheck)
@@ -280,20 +293,34 @@ namespace Linq.Extension.PredicateBuilder
 
         private static Expression NotBeginsWith<T>(MemberExpression member, ConstantExpression valuetoCheck)
         {
-            MethodInfo method = typeof(string).GetMethod("StartsWith", new[] { typeof(string) });
-            return Expression.Not(Expression<Func<T, bool>>.Call(member, method, valuetoCheck));
+            MethodInfo toLowerMethodInfo = typeof(string).GetMethod("ToLower", new Type[] { });
+            Expression toLowerCall = Expression.Call(member, toLowerMethodInfo);
+
+            MethodInfo containsMethodInfo = typeof(string).GetMethod("StartsWith", new Type[] { typeof(string) });
+            ConstantExpression constantExpression = Expression.Constant(valuetoCheck.Value.ToString().ToLower(), typeof(string));
+            return Expression.Not(Expression<Func<T, bool>>.Call(toLowerCall, containsMethodInfo, constantExpression));
         }
 
         private static Expression NotContains<T>(MemberExpression member, ConstantExpression valuetoCheck)
         {
-            MethodInfo method = typeof(string).GetMethod("Contains", new[] { typeof(string) });
-            return Expression.Not(Expression<Func<T, bool>>.Call(member, method, valuetoCheck));
+            MethodInfo toLowerMethodInfo = typeof(string).GetMethod("ToLower", new Type[] { });
+            Expression toLowerCall = Expression.Call(member, toLowerMethodInfo);
+
+            MethodInfo containsMethodInfo = typeof(string).GetMethod("Contains", new Type[] { typeof(string) });
+            ConstantExpression constantExpression = Expression.Constant(valuetoCheck.Value.ToString().ToLower(), typeof(string));
+            return Expression.Not(Expression<Func<T, bool>>.Call(toLowerCall, containsMethodInfo, constantExpression));
+
         }
 
         private static Expression NotEndsWith<T>(MemberExpression member, ConstantExpression valuetoCheck)
         {
-            MethodInfo method = typeof(string).GetMethod("EndsWith", new[] { typeof(string) });
-            return Expression.Not(Expression<Func<T, bool>>.Call(member, method, valuetoCheck));
+            MethodInfo toLowerMethodInfo = typeof(string).GetMethod("ToLower", new Type[] { });
+            Expression toLowerCall = Expression.Call(member, toLowerMethodInfo);
+
+            MethodInfo containsMethodInfo = typeof(string).GetMethod("EndsWith", new Type[] { typeof(string) });
+            ConstantExpression constantExpression = Expression.Constant(valuetoCheck.Value.ToString().ToLower(), typeof(string));
+            return Expression.Not(Expression<Func<T, bool>>.Call(toLowerCall, containsMethodInfo, constantExpression));
+
         }
 
         private static Expression NotEquals<T>(MemberExpression member, ConstantExpression valuetoCheck)
