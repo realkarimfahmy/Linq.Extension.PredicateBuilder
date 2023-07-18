@@ -1,16 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<PackageId>Linq.Extension.PredicateBuilder</PackageId>
-		<Version>1.0</Version>
+		<Version>2.2</Version>
 		<Authors>Karim Fahmy</Authors>
 		<description>A library that build dynamic query predicate with filters in Linq.</description>
-		<PackageTags>Linq;predicate;expression;dynamic;where;clause</PackageTags>
+		<PackageTags>Linq;predicate;expression;dynamic;where;clause;filter;pagination;paging;page;mvc;razor</PackageTags>
 		<RepositoryUrl>https://github.com/realkarimfahmy/Linq.Extension.PredicateBuilder.git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
 </Project>

@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Linq.Extension.PredicateBuilder\Linq.Extension.PredicateBuilder.csproj" />
+    <PackageReference Include="Linq.Extension.PredicateBuilder" Version="2.2.0" />
   </ItemGroup>
 
 </Project>
